@@ -1,5 +1,5 @@
-import { Card, CardContent } from "~/components/ui/card";
-import { QlikItem } from "~/features/qlik/schema";
+import { Card, CardContent } from "src/components/ui/card";
+import { QlikItem } from "src/features/qlik/schema";
 import { ChartAreaIcon } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 

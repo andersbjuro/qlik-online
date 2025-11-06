@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import Navbar from '~/components/Navbar';
-import { buttonVariants } from '~/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Header } from 'src/components/header';
+import { buttonVariants } from 'src/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from "src/components/ui/card";
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -22,8 +22,8 @@ function Home() {
 
   return (
     <div>
-      <Navbar />
-      <div className='p-2'>
+      <Header />
+      <div>
         <section className="relative py-5">
           <div className="flex flex-col items-center text-center space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Vårt kampanjverktyg</h1>

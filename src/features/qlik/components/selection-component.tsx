@@ -1,14 +1,14 @@
-import { Button } from "~/components/ui/button";
+import { Button } from "src/components/ui/button";
 //mport AddSelectionDialog from "./add-selection-dialog";
 //import { useMutation, useQuery } from "@tanstack/react-query";
 //import kyInstance from "@/lib/ky";
-import { SelectionData } from "~/features/qlik/schema";
+import { SelectionData } from "src/features/qlik/schema";
 import { Suspense, useState } from "react";
-import { cn } from "~/lib/utils";
-import { Separator } from "~/components/ui/separator";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
-import { Switch } from "~/components/ui/switch"
-import { Label } from "~/components/ui/label";
+import { cn } from "src/lib/utils";
+import { Separator } from "src/components/ui/separator";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "src/components/ui/dropdown-menu";
+import { Switch } from "src/components/ui/switch"
+import { Label } from "src/components/ui/label";
 import { Dot, EllipsisVerticalIcon } from "lucide-react";
 //import OrderSelectionsDialog from "./order-selections-dialog";
 //import { IconDotsVertical } from "@tabler/icons-react";

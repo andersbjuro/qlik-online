@@ -1,12 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import ApplicationList from "~/features/qlik/components/application-list";
-import { qlikItemsQueryOptions } from "~/services/qlik";
+import ApplicationList from "src/features/qlik/components/application-list";
 
 export const Route = createFileRoute("/_app/dashboard/")({
-  component: RouteComponent,
-  loader: async ({ context }) => {
-    await context.queryClient.ensureQueryData(qlikItemsQueryOptions())
-  },
+  component: RouteComponent
 });
 
 function RouteComponent() {

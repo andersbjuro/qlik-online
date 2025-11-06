@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { getQlikUser, getQlikItems } from '../../../features/qlik/qlik-actions';
-import { QlikItem } from '~/features/qlik/schema';
+import { QlikItem } from '@/features/qlik/schema';
 
 export const Route = createFileRoute('/api/qlik/items')({
   server: {

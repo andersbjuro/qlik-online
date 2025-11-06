@@ -1,25 +1,18 @@
-
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "~/components/ui/breadcrumb"
-import { buttonVariants } from "~/components/ui/button"
-import { Separator } from "~/components/ui/separator"
-import { SidebarTrigger } from "~/components/ui/sidebar"
-//import kyInstance from "@/lib/ky"
-//import { QlikItem } from "@/types/qlik"
-//import { useQuery } from "@tanstack/react-query"
-//import { ArrowLeft } from "lucide-react"
-
+import { useLocation } from "@tanstack/react-router";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "src/components/ui/breadcrumb"
+import { Separator } from "src/components/ui/separator"
+import { SidebarTrigger } from "src/components/ui/sidebar"
 
 export default function SiteHeader() {
-  // const params = useParams()
-  // const pathname = usePathname();
-  // const segments = pathname.split("/").filter(Boolean);
-
-  // const { data: items } = useQuery<QlikItem[]>({
-  //   queryKey: ["qlikitems"],
-  //   queryFn: () => kyInstance.get(`/api/qlik/items`).json<QlikItem[]>(),
-  // });
-
-  //const app = items?.find((item) => item.resourceId === params.app)
+  const location = useLocation();
+  const pathname = location.pathname;
+  const paths = pathname.split('/');
+  const breadcrumb = paths.map((path) => {
+    return {
+      label: path,
+      href: `/${path}`,
+    };
+  });
 
   return (
     <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
@@ -31,28 +24,18 @@ export default function SiteHeader() {
         />
         <Breadcrumb>
           <BreadcrumbList>
-            {/* {segments.map((segment, index) => (
-              <React.Fragment key={segment}>
-                <BreadcrumbItem>
-                  {index === 0 &&
-                    <BreadcrumbLink href="/qlik">
-                      {segment.charAt(0).toUpperCase() + segment.slice(1)}
-                    </BreadcrumbLink>
-                  }
-                  {index > 0 &&
-                    <BreadcrumbLink>
-                      {segment.charAt(0).toUpperCase() + segment.slice(1)}
-                    </BreadcrumbLink>
-                  }
-                </BreadcrumbItem>
-                {index < segments.length - 1 && <BreadcrumbSeparator />}
-              </React.Fragment>
-            ))} */}
+            {breadcrumb.map((item, index) => (
+              <BreadcrumbItem className="hidden md:block" key={item.href}>
+                <BreadcrumbLink className="flex items-center gap-2 text-sm capitalize" href={item.href}>
+                  {item.label}
+                  {index < breadcrumb.length - 1 && index !== 0 && (
+                    <BreadcrumbSeparator className="hidden md:block" />
+                  )}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            ))}
           </BreadcrumbList>
         </Breadcrumb>
-        {/* {app &&
-
-        <Link className={buttonVariants({variant: "link"})} href="/qlik"><ArrowLeft size="4" /> tillbaka</Link>} */}
       </div>
     </header>
   )

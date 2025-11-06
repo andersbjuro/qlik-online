@@ -9,15 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthSignUpRouteImport } from './routes/_auth/sign-up'
+import { Route as AuthSignInRouteImport } from './routes/_auth/sign-in'
+import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
+import { Route as AuthRequestResetPasswordRouteImport } from './routes/_auth/request-reset-password'
 import { Route as AppDashboardRouteRouteImport } from './routes/_app/dashboard/route'
 import { Route as AppDashboardIndexRouteImport } from './routes/_app/dashboard/index'
 import { Route as AppAdminIndexRouteImport } from './routes/_app/admin/index'
 import { Route as ApiQlikItemsRouteImport } from './routes/api/qlik/items'
 import { Route as ApiQlikAccesstokenRouteImport } from './routes/api/qlik/accesstoken'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as AppDashboardAppIdRouteImport } from './routes/_app/dashboard/$appId'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
@@ -27,6 +37,27 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthSignUpRoute = AuthSignUpRouteImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthSignInRoute = AuthSignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthRequestResetPasswordRoute =
+  AuthRequestResetPasswordRouteImport.update({
+    id: '/request-reset-password',
+    path: '/request-reset-password',
+    getParentRoute: () => AuthRoute,
+  } as any)
 const AppDashboardRouteRoute = AppDashboardRouteRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -52,6 +83,11 @@ const ApiQlikAccesstokenRoute = ApiQlikAccesstokenRouteImport.update({
   path: '/api/qlik/accesstoken',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppDashboardAppIdRoute = AppDashboardAppIdRouteImport.update({
   id: '/$appId',
   path: '/$appId',
@@ -61,7 +97,12 @@ const AppDashboardAppIdRoute = AppDashboardAppIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof AppDashboardRouteRouteWithChildren
+  '/request-reset-password': typeof AuthRequestResetPasswordRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/sign-in': typeof AuthSignInRoute
+  '/sign-up': typeof AuthSignUpRoute
   '/dashboard/$appId': typeof AppDashboardAppIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
   '/api/qlik/items': typeof ApiQlikItemsRoute
   '/admin': typeof AppAdminIndexRoute
@@ -69,7 +110,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/request-reset-password': typeof AuthRequestResetPasswordRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/sign-in': typeof AuthSignInRoute
+  '/sign-up': typeof AuthSignUpRoute
   '/dashboard/$appId': typeof AppDashboardAppIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
   '/api/qlik/items': typeof ApiQlikItemsRoute
   '/admin': typeof AppAdminIndexRoute
@@ -79,8 +125,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/_auth': typeof AuthRouteWithChildren
   '/_app/dashboard': typeof AppDashboardRouteRouteWithChildren
+  '/_auth/request-reset-password': typeof AuthRequestResetPasswordRoute
+  '/_auth/reset-password': typeof AuthResetPasswordRoute
+  '/_auth/sign-in': typeof AuthSignInRoute
+  '/_auth/sign-up': typeof AuthSignUpRoute
   '/_app/dashboard/$appId': typeof AppDashboardAppIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
   '/api/qlik/items': typeof ApiQlikItemsRoute
   '/_app/admin/': typeof AppAdminIndexRoute
@@ -91,7 +143,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/request-reset-password'
+    | '/reset-password'
+    | '/sign-in'
+    | '/sign-up'
     | '/dashboard/$appId'
+    | '/api/auth/$'
     | '/api/qlik/accesstoken'
     | '/api/qlik/items'
     | '/admin'
@@ -99,7 +156,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/request-reset-password'
+    | '/reset-password'
+    | '/sign-in'
+    | '/sign-up'
     | '/dashboard/$appId'
+    | '/api/auth/$'
     | '/api/qlik/accesstoken'
     | '/api/qlik/items'
     | '/admin'
@@ -108,8 +170,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_app'
+    | '/_auth'
     | '/_app/dashboard'
+    | '/_auth/request-reset-password'
+    | '/_auth/reset-password'
+    | '/_auth/sign-in'
+    | '/_auth/sign-up'
     | '/_app/dashboard/$appId'
+    | '/api/auth/$'
     | '/api/qlik/accesstoken'
     | '/api/qlik/items'
     | '/_app/admin/'
@@ -119,12 +187,21 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
+  AuthRoute: typeof AuthRouteWithChildren
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiQlikAccesstokenRoute: typeof ApiQlikAccesstokenRoute
   ApiQlikItemsRoute: typeof ApiQlikItemsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_app': {
       id: '/_app'
       path: ''
@@ -138,6 +215,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_auth/sign-up': {
+      id: '/_auth/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof AuthSignUpRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/sign-in': {
+      id: '/_auth/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof AuthSignInRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/reset-password': {
+      id: '/_auth/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/request-reset-password': {
+      id: '/_auth/request-reset-password'
+      path: '/request-reset-password'
+      fullPath: '/request-reset-password'
+      preLoaderRoute: typeof AuthRequestResetPasswordRouteImport
+      parentRoute: typeof AuthRoute
     }
     '/_app/dashboard': {
       id: '/_app/dashboard'
@@ -172,6 +277,13 @@ declare module '@tanstack/react-router' {
       path: '/api/qlik/accesstoken'
       fullPath: '/api/qlik/accesstoken'
       preLoaderRoute: typeof ApiQlikAccesstokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app/dashboard/$appId': {
@@ -209,9 +321,27 @@ const AppRouteChildren: AppRouteChildren = {
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
+interface AuthRouteChildren {
+  AuthRequestResetPasswordRoute: typeof AuthRequestResetPasswordRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  AuthSignInRoute: typeof AuthSignInRoute
+  AuthSignUpRoute: typeof AuthSignUpRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthRequestResetPasswordRoute: AuthRequestResetPasswordRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
+  AuthSignInRoute: AuthSignInRoute,
+  AuthSignUpRoute: AuthSignUpRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
+  AuthRoute: AuthRouteWithChildren,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiQlikAccesstokenRoute: ApiQlikAccesstokenRoute,
   ApiQlikItemsRoute: ApiQlikItemsRoute,
 }

@@ -4,8 +4,8 @@ import { HeadContent, Scripts, createRootRouteWithContext } from '@tanstack/reac
 //import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 //import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import * as React from 'react'
-import { DefaultCatchBoundary } from '~/components/DefaultCatchBoundary'
-import { NotFound } from '~/components/NotFound'
+import { DefaultCatchBoundary } from 'src/components/DefaultCatchBoundary'
+import { NotFound } from 'src/components/NotFound'
 import appCss from '../styles/app.css?url'
 
 export const Route = createRootRouteWithContext<{
