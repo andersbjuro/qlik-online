@@ -28,18 +28,6 @@ CREATE TABLE "passkey" (
 	"aaguid" text
 );
 --> statement-breakpoint
-CREATE TABLE "session" (
-	"id" text PRIMARY KEY NOT NULL,
-	"userId" text NOT NULL,
-	"token" text NOT NULL,
-	"expiresAt" timestamp NOT NULL,
-	"ipAddress" text,
-	"userAgent" text,
-	"createdAt" timestamp DEFAULT now() NOT NULL,
-	"updatedAt" timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT "session_token_unique" UNIQUE("token")
-);
---> statement-breakpoint
 CREATE TABLE "user" (
 	"id" text PRIMARY KEY NOT NULL,
 	"name" varchar(255) NOT NULL,
@@ -54,6 +42,18 @@ CREATE TABLE "user" (
 	"createdAt" timestamp DEFAULT now() NOT NULL,
 	"updatedAt" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "user_email_unique" UNIQUE("email")
+);
+--> statement-breakpoint
+CREATE TABLE "session" (
+	"id" text PRIMARY KEY NOT NULL,
+	"userId" text NOT NULL,
+	"token" text NOT NULL,
+	"expiresAt" timestamp NOT NULL,
+	"ipAddress" text,
+	"userAgent" text,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL,
+	CONSTRAINT "session_token_unique" UNIQUE("token")
 );
 --> statement-breakpoint
 CREATE TABLE "verification" (

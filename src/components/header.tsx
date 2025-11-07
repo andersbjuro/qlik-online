@@ -4,9 +4,19 @@ import { SignedIn } from "src/features/auth/client/components/signed-in";
 import { SignedOut } from "src/features/auth/client/components/signed-out";
 import UserMenu from "src/features/auth/client/components/user-menu";
 import { ButtonLink } from "./button-link";
+import { authClient } from "~/features/auth/lib/auth-client";
+import { useQueryClient } from "@tanstack/react-query"
+import { Button } from "./ui/button";
 
 export const Header = () => {
+  const queryClient = useQueryClient()
   const router = useRouter()
+
+  const handleLogout = async () => {
+    await authClient.signOut()
+    await queryClient.invalidateQueries()
+    router.invalidate()
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-[backdrop-filter]:bg-background/60">
@@ -18,14 +28,16 @@ export const Header = () => {
         <nav className="hidden items-center justify-center md:flex">
           <div className="flex items-center">
             <SignedIn>
-              <UserMenu />
+              <Button
+                onClick={handleLogout}
+              >
+                Logga ut
+              </Button>
             </SignedIn>
             <SignedOut>
               <ButtonLink
-                size={"sm"}
                 to="/sign-in"
                 search={{ redirectTo: router.state.location.href }}
-                className="max-sm:px-2 max-sm:text-xs"
               >
                 Logga in
               </ButtonLink>

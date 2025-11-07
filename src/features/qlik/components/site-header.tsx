@@ -22,10 +22,10 @@ export default function SiteHeader() {
           orientation="vertical"
           className=" data-[orientation=vertical]:h-4"
         />
-        <Breadcrumb>
+        {/* <Breadcrumb>
           <BreadcrumbList>
             {breadcrumb.map((item, index) => (
-              <BreadcrumbItem className="hidden md:block" key={item.href}>
+              <BreadcrumbItem className="hidden md:block" key={index}>
                 <BreadcrumbLink className="flex items-center gap-2 text-sm capitalize" href={item.href}>
                   {item.label}
                   {index < breadcrumb.length - 1 && index !== 0 && (
@@ -35,7 +35,7 @@ export default function SiteHeader() {
               </BreadcrumbItem>
             ))}
           </BreadcrumbList>
-        </Breadcrumb>
+        </Breadcrumb> */}
       </div>
     </header>
   )

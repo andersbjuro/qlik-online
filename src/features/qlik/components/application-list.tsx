@@ -1,12 +1,9 @@
 import { ApplicationCard } from "./application-card";
-import { qlikItemsQueryOptions } from "src/services/queries";
+import { qlikQueries } from "src/services/queries";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 export default function ApplicationList() {
-  const {data : items} = useSuspenseQuery(qlikItemsQueryOptions())
-  //const session = useSession();
-  //if (!session.data?.user?.onboardingComplete) redirect("/onboarding");
-
+  const {data : items} = useSuspenseQuery(qlikQueries.items())
   return (
     <div>
       <main>

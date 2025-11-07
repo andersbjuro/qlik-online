@@ -11,9 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "src/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "src/components/ui/sidebar";
-//import { useLogout } from "@/features/auth/auth-hooks";
 import { authClient } from "src/features/auth/lib/auth-client";
-import { useSignOut } from "../auth/client/use-cases";
+import { useSignOut } from "src/features/auth/client/use-cases";
 
 export function NavUser({
   user,
@@ -73,30 +72,15 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => router.navigate({ to: "/dashboard/settings" })}>
                 <BadgeCheck />
-                Settings
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
+                Inställningar
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => logout.mutate()}>
               <LogOut />
-              Log out
+              Logga ut
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

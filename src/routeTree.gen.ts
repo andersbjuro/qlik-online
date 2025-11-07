@@ -22,6 +22,7 @@ import { Route as AppAdminIndexRouteImport } from './routes/_app/admin/index'
 import { Route as ApiQlikItemsRouteImport } from './routes/api/qlik/items'
 import { Route as ApiQlikAccesstokenRouteImport } from './routes/api/qlik/accesstoken'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as AppDashboardSettingsRouteImport } from './routes/_app/dashboard/settings'
 import { Route as AppDashboardAppIdRouteImport } from './routes/_app/dashboard/$appId'
 
 const AuthRoute = AuthRouteImport.update({
@@ -88,6 +89,11 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppDashboardSettingsRoute = AppDashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppDashboardRouteRoute,
+} as any)
 const AppDashboardAppIdRoute = AppDashboardAppIdRouteImport.update({
   id: '/$appId',
   path: '/$appId',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
   '/dashboard/$appId': typeof AppDashboardAppIdRoute
+  '/dashboard/settings': typeof AppDashboardSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
   '/api/qlik/items': typeof ApiQlikItemsRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
   '/dashboard/$appId': typeof AppDashboardAppIdRoute
+  '/dashboard/settings': typeof AppDashboardSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
   '/api/qlik/items': typeof ApiQlikItemsRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/_auth/sign-in': typeof AuthSignInRoute
   '/_auth/sign-up': typeof AuthSignUpRoute
   '/_app/dashboard/$appId': typeof AppDashboardAppIdRoute
+  '/_app/dashboard/settings': typeof AppDashboardSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
   '/api/qlik/items': typeof ApiQlikItemsRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/dashboard/$appId'
+    | '/dashboard/settings'
     | '/api/auth/$'
     | '/api/qlik/accesstoken'
     | '/api/qlik/items'
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/dashboard/$appId'
+    | '/dashboard/settings'
     | '/api/auth/$'
     | '/api/qlik/accesstoken'
     | '/api/qlik/items'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/_auth/sign-in'
     | '/_auth/sign-up'
     | '/_app/dashboard/$appId'
+    | '/_app/dashboard/settings'
     | '/api/auth/$'
     | '/api/qlik/accesstoken'
     | '/api/qlik/items'
@@ -286,6 +298,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/dashboard/settings': {
+      id: '/_app/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof AppDashboardSettingsRouteImport
+      parentRoute: typeof AppDashboardRouteRoute
+    }
     '/_app/dashboard/$appId': {
       id: '/_app/dashboard/$appId'
       path: '/$appId'
@@ -298,11 +317,13 @@ declare module '@tanstack/react-router' {
 
 interface AppDashboardRouteRouteChildren {
   AppDashboardAppIdRoute: typeof AppDashboardAppIdRoute
+  AppDashboardSettingsRoute: typeof AppDashboardSettingsRoute
   AppDashboardIndexRoute: typeof AppDashboardIndexRoute
 }
 
 const AppDashboardRouteRouteChildren: AppDashboardRouteRouteChildren = {
   AppDashboardAppIdRoute: AppDashboardAppIdRoute,
+  AppDashboardSettingsRoute: AppDashboardSettingsRoute,
   AppDashboardIndexRoute: AppDashboardIndexRoute,
 }
 

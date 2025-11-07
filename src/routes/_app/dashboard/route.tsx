@@ -2,12 +2,12 @@ import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { SidebarInset, SidebarProvider } from "src/components/ui/sidebar";
 import QlikSidebar from "src/features/qlik/components/qlik-sidebar";
 import SiteHeader from "src/features/qlik/components/site-header";
-import { qlikItemsQueryOptions } from "src/services/queries";
+import { qlikQueries } from "src/services/queries";
 
 export const Route = createFileRoute("/_app/dashboard")({
   component: RouteComponent,
   loader: async ({ context }) => {
-    await context.queryClient.prefetchQuery(qlikItemsQueryOptions())
+    await context.queryClient.prefetchQuery(qlikQueries.items());
   },
 });
 

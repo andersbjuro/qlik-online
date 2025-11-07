@@ -1,7 +1,7 @@
 import { users as qlikUsers, qix as openAppSession, items as qlikItems, spaces as qlikSpaces } from "@qlik/api";
 import { Doc } from "@qlik/api/qix";
 import { User } from "@qlik/api/users";
-import { QlikItem } from "./schema";
+import { QlikItem } from "./types";
 
 export const configFrontend = {
     authType: "oauth2" as const,
@@ -48,7 +48,7 @@ export async function getQlikItems(user: User) {
                     resourceType: item.resourceType ? item.resourceType : "",
                     description: item.description ? item.description : "",
                     //createdAt: item ? new Date(item.createdAt) : new Date(),
-                    //updatedAt: item.updatedAt ? new Date(item.updatedAt) : new Date()
+                    updatedAt: item.updatedAt ? new Date(item.updatedAt) : new Date()
                 })
             });
         }

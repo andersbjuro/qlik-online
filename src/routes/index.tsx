@@ -27,7 +27,7 @@ function Home() {
         <section className="relative py-5">
           <div className="flex flex-col items-center text-center space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Vårt kampanjverktyg</h1>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl">
+            <p className="max-w-[700px] text-muted-foreground ">
               Forba Systems är ett webbaserat verktyg för företag som arbetar med kampanjer riktade till fordonsägare. Verktyget är utformat för att vara så enkelt som möjligt att använda, samtidigt som det motsvarar de förväntningar som kan ställas på ett professionellt kampanjverktyg.
             </p>
             <div className="flex flex-col sm:flex-row mt-5">
@@ -41,7 +41,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5 p-2">
           {features.map((feature, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardHeader>
@@ -50,7 +50,7 @@ function Home() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   {feature.description}
                 </p>
               </CardContent>

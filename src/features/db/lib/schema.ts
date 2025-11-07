@@ -1,6 +1,5 @@
 
-//import { todo } from "@/features/todo/schema";
-import { user, session, account, verification, passkey } from "@/features/auth/schema";
+import { selection } from "src/features/qlik/schema";
+import { user, session, account, verification, passkey } from "src/features/auth/schema";
 
-//export { todo, user, session, account, verification, passkey };
-export { user, session, account, verification, passkey };
+export { selection, user, session, account, verification, passkey };

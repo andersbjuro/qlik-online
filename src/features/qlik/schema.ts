@@ -1,32 +1,15 @@
+import { boolean, integer, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
-export type SelectionData = {
-    id: number,
-    userId: string
-    applicationId: string,
-    description: string,
-    selectionAsJson: string,
-    archive: string,
-    ts01: string,
-    selectionFidCount: number,
-    selectionPidCount: number,
-    bookmark: boolean,
-    createdAt: Date,
-    selectionLines?: number[]
-};
-
-export type QlikApplication = {
-    name: string
-    appId: string
-    sheetId: string
-    description: string
-}
-
-export type QlikItem = {
-    name: string
-    spaceId: string
-    resourceId: string
-    resourceType: string
-    description: string,
-   // createdAt: Date,
-   // updatedAt: Date
-}
+export const selection = pgTable("selection", {
+  id: integer("id").primaryKey().notNull().generatedByDefaultAsIdentity(),
+  description: varchar("description", { length: 100 }).notNull(),
+  userId: text("userId").notNull(),
+  applicationId: varchar("applicationId", { length: 40 }).notNull(),
+  selectionAsJson: text("selectionAsJson").notNull(),
+  archive: varchar("archive", { length: 10 }).notNull(),
+  ts01: varchar("ts01", { length: 10 }).notNull(),
+  selectionFidCount: integer("selectionFidCount"),
+	selectionPidCount: integer("selectionPidCount"),
+  bookmark: boolean("bookmark").$defaultFn(() => false).notNull(),
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+});

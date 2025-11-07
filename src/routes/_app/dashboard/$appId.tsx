@@ -1,4 +1,4 @@
-import { createFileRoute, useLoaderData } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { Suspense } from 'react'
 import QlikSheet from 'src/features/qlik/components/qlik-sheet'
 

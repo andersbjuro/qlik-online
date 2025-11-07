@@ -1,0 +1,1 @@
+ALTER TABLE "selection" ADD COLUMN "userId" text NOT NULL;
