@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Suspense } from 'react'
 import QlikSheet from 'src/features/qlik/components/qlik-sheet'
 
 export const Route = createFileRoute('/_app/dashboard/$appId')({
@@ -8,11 +7,10 @@ export const Route = createFileRoute('/_app/dashboard/$appId')({
 
 function RouteComponent() {
   const { appId } = Route.useParams()
+
   return (
     <main className="flex">
-      <Suspense fallback={<span className="p-10">Laddar Qlik...</span>}>
-        <QlikSheet appId={appId} />
-      </Suspense>
+      <QlikSheet appId={appId} />
     </main>
   )
 }

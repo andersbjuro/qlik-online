@@ -7,14 +7,8 @@ import { authClient } from 'src/features/auth/lib/auth-client'
 import { NavItems } from './nav-items'
 
 export default function QlikSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { data: session } = authClient.useSession();
-  const userData = session?.user
-    ? {
-      name: session.user.name || session.user.email,
-      email: session.user.email,
-      avatar: session.user.image || '/placeholder-user.jpg',
-    }
-    : undefined;
+  //const { data: session } = authClient.useSession();
+
 
   // Admin navigation items - only show if user has admin permissions
   //const adminItems = canManageUsers(currentUserRole)
@@ -46,7 +40,7 @@ export default function QlikSidebar({ ...props }: React.ComponentProps<typeof Si
       </SidebarContent>
       <SidebarFooter>
         <NavItems items={allNavigationItems} label="" />
-        {userData && <NavUser user={userData} />}
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   )

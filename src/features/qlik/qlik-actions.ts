@@ -48,7 +48,7 @@ export async function getQlikItems(user: User) {
                     resourceType: item.resourceType ? item.resourceType : "",
                     description: item.description ? item.description : "",
                     //createdAt: item ? new Date(item.createdAt) : new Date(),
-                    updatedAt: item.updatedAt ? new Date(item.updatedAt) : new Date()
+                    updatedAt: item.updatedAt
                 })
             });
         }

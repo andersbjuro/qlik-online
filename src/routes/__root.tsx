@@ -36,11 +36,11 @@ export const Route = createRootRouteWithContext<{
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en'>
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col antialiased ">
         <main className="flex-1 ">{children}</main>
         {/* <TanStackRouterDevtools position="bottom-right" />
         <ReactQueryDevtools buttonPosition='bottom-left'/> */}

@@ -14,15 +14,7 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "src
 import { authClient } from "src/features/auth/lib/auth-client";
 import { useSignOut } from "src/features/auth/client/use-cases";
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-  };
-}) {
+export function NavUser() {
   const { isMobile } = useSidebar();
   const { data } = authClient.useSession();
   const router = useRouter();

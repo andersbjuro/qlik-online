@@ -11,5 +11,5 @@ export const selection = pgTable("selection", {
   selectionFidCount: integer("selectionFidCount"),
 	selectionPidCount: integer("selectionPidCount"),
   bookmark: boolean("bookmark").$defaultFn(() => false).notNull(),
-  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  createdAt: timestamp("createdAt", { mode: 'string' } ).notNull().defaultNow(),
 });

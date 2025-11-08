@@ -19,7 +19,6 @@ import { Route as AuthRequestResetPasswordRouteImport } from './routes/_auth/req
 import { Route as AppDashboardRouteRouteImport } from './routes/_app/dashboard/route'
 import { Route as AppDashboardIndexRouteImport } from './routes/_app/dashboard/index'
 import { Route as AppAdminIndexRouteImport } from './routes/_app/admin/index'
-import { Route as ApiQlikItemsRouteImport } from './routes/api/qlik/items'
 import { Route as ApiQlikAccesstokenRouteImport } from './routes/api/qlik/accesstoken'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as AppDashboardSettingsRouteImport } from './routes/_app/dashboard/settings'
@@ -74,11 +73,6 @@ const AppAdminIndexRoute = AppAdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => AppRoute,
 } as any)
-const ApiQlikItemsRoute = ApiQlikItemsRouteImport.update({
-  id: '/api/qlik/items',
-  path: '/api/qlik/items',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiQlikAccesstokenRoute = ApiQlikAccesstokenRouteImport.update({
   id: '/api/qlik/accesstoken',
   path: '/api/qlik/accesstoken',
@@ -111,7 +105,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings': typeof AppDashboardSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
-  '/api/qlik/items': typeof ApiQlikItemsRoute
   '/admin': typeof AppAdminIndexRoute
   '/dashboard/': typeof AppDashboardIndexRoute
 }
@@ -125,7 +118,6 @@ export interface FileRoutesByTo {
   '/dashboard/settings': typeof AppDashboardSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
-  '/api/qlik/items': typeof ApiQlikItemsRoute
   '/admin': typeof AppAdminIndexRoute
   '/dashboard': typeof AppDashboardIndexRoute
 }
@@ -143,7 +135,6 @@ export interface FileRoutesById {
   '/_app/dashboard/settings': typeof AppDashboardSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
-  '/api/qlik/items': typeof ApiQlikItemsRoute
   '/_app/admin/': typeof AppAdminIndexRoute
   '/_app/dashboard/': typeof AppDashboardIndexRoute
 }
@@ -160,7 +151,6 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/api/auth/$'
     | '/api/qlik/accesstoken'
-    | '/api/qlik/items'
     | '/admin'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
@@ -174,7 +164,6 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/api/auth/$'
     | '/api/qlik/accesstoken'
-    | '/api/qlik/items'
     | '/admin'
     | '/dashboard'
   id:
@@ -191,7 +180,6 @@ export interface FileRouteTypes {
     | '/_app/dashboard/settings'
     | '/api/auth/$'
     | '/api/qlik/accesstoken'
-    | '/api/qlik/items'
     | '/_app/admin/'
     | '/_app/dashboard/'
   fileRoutesById: FileRoutesById
@@ -202,7 +190,6 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiQlikAccesstokenRoute: typeof ApiQlikAccesstokenRoute
-  ApiQlikItemsRoute: typeof ApiQlikItemsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -276,13 +263,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin'
       preLoaderRoute: typeof AppAdminIndexRouteImport
       parentRoute: typeof AppRoute
-    }
-    '/api/qlik/items': {
-      id: '/api/qlik/items'
-      path: '/api/qlik/items'
-      fullPath: '/api/qlik/items'
-      preLoaderRoute: typeof ApiQlikItemsRouteImport
-      parentRoute: typeof rootRouteImport
     }
     '/api/qlik/accesstoken': {
       id: '/api/qlik/accesstoken'
@@ -364,7 +344,6 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiQlikAccesstokenRoute: ApiQlikAccesstokenRoute,
-  ApiQlikItemsRoute: ApiQlikItemsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

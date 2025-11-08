@@ -1,3 +1,4 @@
+import { st } from "node_modules/@qlik/api/chunks/qix-CrD3jqUl";
 
 export type SelectionData = {
     id: number,
@@ -10,7 +11,7 @@ export type SelectionData = {
     selectionFidCount: number,
     selectionPidCount: number,
     bookmark: boolean,
-    createdAt: Date,
+    createdAt: string,
     selectionLines?: number[]
 };
 
@@ -28,5 +29,5 @@ export type QlikItem = {
     resourceType: string
     description: string,
    // createdAt: Date,
-   updatedAt: Date
+   updatedAt: string
 }

@@ -1,6 +1,6 @@
 import { SelectionFilters } from './qlik.schema';
 import { queryOptions } from "@tanstack/react-query";
-import { fetchQlikItems, getSelections } from "./qlik.api";
+import { getQlikItemsForUser, getSelections } from "./qlik.api";
 import { getUserSession } from "./auth.api";
 
 export const authQueries = {
@@ -13,18 +13,12 @@ export const authQueries = {
     }),
 }
 
-// export const qlikItemsQueryOptions = () =>
-//   queryOptions({
-//     queryKey: ['qlik-items'],
-//     queryFn: () => fetchQlikItems()
-//   })
-
 export const qlikQueries = {
   all: ["qlik"],
   items: () =>
     queryOptions({
       queryKey: [...qlikQueries.all, "items"],
-      queryFn: () => fetchQlikItems()
+      queryFn: () => getQlikItemsForUser()
     })
 }
 
