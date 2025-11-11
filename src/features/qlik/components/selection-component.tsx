@@ -9,8 +9,8 @@ import { Separator } from "src/components/ui/separator";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "src/components/ui/dropdown-menu";
 import { Switch } from "src/components/ui/switch"
 import { Label } from "src/components/ui/label";
-import { Dot, EllipsisVerticalIcon } from "lucide-react";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { BoxIcon, Dot, EllipsisVerticalIcon } from "lucide-react";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { selectionQueries } from "~/services/queries";
 import { useParams } from "@tanstack/react-router";
 import { on } from "events";
@@ -23,10 +23,10 @@ export default function SelectionsComponent() {
   const { appId } = useParams({ strict: false })
   const [bmark, setBmark] = useState(false);
   const [selectedId, setSelectedId] = useState<number>();
-  const { data: items } = useSuspenseQuery(selectionQueries.list({ appId: appId || '' }))
+  const selections = useSuspenseQuery(selectionQueries.list({ appId: appId || '' }))
   //const mutation = useDeleteSelectionMutation();
 
-  const filter = bmark ? items?.filter(x => x.bookmark) : items?.filter(x => !x.bookmark)
+  const filter = bmark ? selections.data?.filter(x => x.bookmark) : selections.data?.filter(x => !x.bookmark)
   async function handleSetSelection(selection: SelectionData) {
     //await kyInstance.post(`/api/qlik/selections`, { json: { appId: selection.applicationId, data: JSON.parse(selection.selectionAsJson) } }).json();
     setSelectedId(selection.id);
@@ -44,13 +44,14 @@ export default function SelectionsComponent() {
 
   return (
     <div className="flex h-full">
-      <div className="flex flex-col w-full">
-        <div className="flex items-center justify-between space-x-2 ">
-          <div className="flex items-center space-x-2">
+      <div className="flex flex-col w-full p-2">
+        <div className="flex items-center justify-between space-x-2 mb-4">
+          <div className="flex items-center justify-between w-full">
+            <Label htmlFor="bmark" className="text-xs">Visa bokmärken</Label>
             <Switch id="bmark" name="bmark"
               checked={bmark}
-              onCheckedChange={setBmark} />
-            <Label htmlFor="bmark" className="text-xs">Bokmärken</Label>
+              onCheckedChange={setBmark}
+            />
           </div>
           <div>
             {/* <DropdownMenu>
@@ -78,60 +79,20 @@ export default function SelectionsComponent() {
 
         <div className="flex-1 overflow-y-auto ">
           {filter && filter.length > 0 ? (
-            <div className="w-full space-y-1 p-1">
+            <div className="w-full space-y-1">
               {filter.map((item: any) => (
-
-                // <div key={item.id} className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex flex-col items-start">
-                //   <div className={cn('w-full border-l-4 ', selectedId === item.id ? 'border-primary' : '')}>
-                //     <div onClick={() => { handleSetSelection(item) }} className="cursor-pointer flex flex-col ">
-                //       <div className="flex justify-between items-center">
-                //         <div className="w-full p-2 text-xs font-medium">
-                //           {item.description}
-                //         </div>
-                //         <div className="mr-3 text-xs">
-                //           {item.selectionFidCount}
-                //         </div>
-                //       </div>
-
-                //       <h4 className="ml-2 mb-1 text-xs">
-                //         arkiv {item.archive}
-                //       </h4>
-                //       <Separator />
-                //     </div>
-                //     <div className="flex justify-between">
-                //       <div />
-                //       <div className="ml-5">
-                //         <DropdownMenu>
-                //           <DropdownMenuTrigger asChild>
-                //             <Button size="icon" variant="ghost" className="focus-visible:ring-0 focus-visible:ring-offset-0">
-                //               <EllipsisVerticalIcon className="size-4" />
-                //             </Button>
-                //           </DropdownMenuTrigger>
-                //           <DropdownMenuContent align="end">
-                //             <DropdownMenuLabel className="text-xs text-muted-foreground">{'Kommandon'}</DropdownMenuLabel>
-                //             <DropdownMenuSeparator />
-                //             <DropdownMenuItem asChild>
-                //               <div onClick={() => { handleSetSelection(item) }}>
-                //                 <Label className="text-xs">Visa</Label>
-                //               </div>
-                //             </DropdownMenuItem>
-                //             <DropdownMenuItem asChild>
-                //               <div onClick={() => { handleDeleteSelection(item.id) }}>
-                //                 <Label className="text-xs">Radera</Label>
-                //               </div>
-                //             </DropdownMenuItem>
-                //           </DropdownMenuContent>
-                //         </DropdownMenu>
-                //       </div>
-                //     </div>
-                //   </div>
-                // </div>
                 <SelectionItem key={item.id} item={item} onSelect={handleSetSelection} selectedId={selectedId} />
               ))}
             </div>
 
           ) : (
-            <div></div>
+            <div className="flex min-h-[200px] items-center justify-center">
+              <div className="text-center">
+                <BoxIcon className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+                <h3 className="font-semibold text-lg text-muted-foreground">Inga urval</h3>
+                <p className="text-muted-foreground text-xs">Ingen applikation vald eller urval sparade</p>
+              </div>
+            </div>
           )}
 
         </div>

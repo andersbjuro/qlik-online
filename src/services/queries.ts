@@ -18,7 +18,7 @@ export const qlikQueries = {
   items: () =>
     queryOptions({
       queryKey: [...qlikQueries.all, "items"],
-      queryFn: () => getQlikItemsForUser()
+      queryFn: () => getQlikItemsForUser(),
     })
 }
 

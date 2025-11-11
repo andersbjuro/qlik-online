@@ -31,7 +31,7 @@ function Home() {
               Forba Systems är ett webbaserat verktyg för företag som arbetar med kampanjer riktade till fordonsägare. Verktyget är utformat för att vara så enkelt som möjligt att använda, samtidigt som det motsvarar de förväntningar som kan ställas på ett professionellt kampanjverktyg.
             </p>
             <div className="flex flex-col sm:flex-row mt-5">
-              <Link to="/dashboard" className={buttonVariants({ size: "lg" })} >
+              <Link to="/dashboard" className={buttonVariants({ size: "sm" })} >
                 Qlik Applikationer
               </Link>
               {/* <Link to="/login" className={buttonVariants({ size: "lg" })}  hidden={session ? true : false}>

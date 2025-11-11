@@ -25,3 +25,13 @@ export const useAuthentication = () => {
 
   return { userSession, isAuthenticated: !!userSession }
 }
+
+export const useAuthenticatedUser = () => {
+  const { userSession } = useAuthentication()
+
+  if (!userSession) {
+    throw new Error("User is not authenticated!")
+  }
+
+  return userSession
+}

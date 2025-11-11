@@ -11,14 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppRouteImport } from './routes/_app'
+import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminUsersRouteImport } from './routes/admin/users'
 import { Route as AuthSignUpRouteImport } from './routes/_auth/sign-up'
 import { Route as AuthSignInRouteImport } from './routes/_auth/sign-in'
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AuthRequestResetPasswordRouteImport } from './routes/_auth/request-reset-password'
 import { Route as AppDashboardRouteRouteImport } from './routes/_app/dashboard/route'
 import { Route as AppDashboardIndexRouteImport } from './routes/_app/dashboard/index'
-import { Route as AppAdminIndexRouteImport } from './routes/_app/admin/index'
 import { Route as ApiQlikAccesstokenRouteImport } from './routes/api/qlik/accesstoken'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as AppDashboardSettingsRouteImport } from './routes/_app/dashboard/settings'
@@ -32,10 +34,25 @@ const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRouteRoute = AdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRouteRoute,
 } as any)
 const AuthSignUpRoute = AuthSignUpRouteImport.update({
   id: '/sign-up',
@@ -68,11 +85,6 @@ const AppDashboardIndexRoute = AppDashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppDashboardRouteRoute,
 } as any)
-const AppAdminIndexRoute = AppAdminIndexRouteImport.update({
-  id: '/admin/',
-  path: '/admin/',
-  getParentRoute: () => AppRoute,
-} as any)
 const ApiQlikAccesstokenRoute = ApiQlikAccesstokenRouteImport.update({
   id: '/api/qlik/accesstoken',
   path: '/api/qlik/accesstoken',
@@ -96,16 +108,18 @@ const AppDashboardAppIdRoute = AppDashboardAppIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/dashboard': typeof AppDashboardRouteRouteWithChildren
   '/request-reset-password': typeof AuthRequestResetPasswordRoute
   '/reset-password': typeof AuthResetPasswordRoute
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/': typeof AdminIndexRoute
   '/dashboard/$appId': typeof AppDashboardAppIdRoute
   '/dashboard/settings': typeof AppDashboardSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
-  '/admin': typeof AppAdminIndexRoute
   '/dashboard/': typeof AppDashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -114,16 +128,18 @@ export interface FileRoutesByTo {
   '/reset-password': typeof AuthResetPasswordRoute
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin': typeof AdminIndexRoute
   '/dashboard/$appId': typeof AppDashboardAppIdRoute
   '/dashboard/settings': typeof AppDashboardSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
-  '/admin': typeof AppAdminIndexRoute
   '/dashboard': typeof AppDashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/_app': typeof AppRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
   '/_app/dashboard': typeof AppDashboardRouteRouteWithChildren
@@ -131,27 +147,30 @@ export interface FileRoutesById {
   '/_auth/reset-password': typeof AuthResetPasswordRoute
   '/_auth/sign-in': typeof AuthSignInRoute
   '/_auth/sign-up': typeof AuthSignUpRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/': typeof AdminIndexRoute
   '/_app/dashboard/$appId': typeof AppDashboardAppIdRoute
   '/_app/dashboard/settings': typeof AppDashboardSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/qlik/accesstoken': typeof ApiQlikAccesstokenRoute
-  '/_app/admin/': typeof AppAdminIndexRoute
   '/_app/dashboard/': typeof AppDashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/dashboard'
     | '/request-reset-password'
     | '/reset-password'
     | '/sign-in'
     | '/sign-up'
+    | '/admin/users'
+    | '/admin/'
     | '/dashboard/$appId'
     | '/dashboard/settings'
     | '/api/auth/$'
     | '/api/qlik/accesstoken'
-    | '/admin'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -160,15 +179,17 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sign-in'
     | '/sign-up'
+    | '/admin/users'
+    | '/admin'
     | '/dashboard/$appId'
     | '/dashboard/settings'
     | '/api/auth/$'
     | '/api/qlik/accesstoken'
-    | '/admin'
     | '/dashboard'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/_app'
     | '/_auth'
     | '/_app/dashboard'
@@ -176,16 +197,18 @@ export interface FileRouteTypes {
     | '/_auth/reset-password'
     | '/_auth/sign-in'
     | '/_auth/sign-up'
+    | '/admin/users'
+    | '/admin/'
     | '/_app/dashboard/$appId'
     | '/_app/dashboard/settings'
     | '/api/auth/$'
     | '/api/qlik/accesstoken'
-    | '/_app/admin/'
     | '/_app/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
   AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -208,12 +231,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRouteRoute
     }
     '/_auth/sign-up': {
       id: '/_auth/sign-up'
@@ -257,13 +301,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardIndexRouteImport
       parentRoute: typeof AppDashboardRouteRoute
     }
-    '/_app/admin/': {
-      id: '/_app/admin/'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AppAdminIndexRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/api/qlik/accesstoken': {
       id: '/api/qlik/accesstoken'
       path: '/api/qlik/accesstoken'
@@ -295,6 +332,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteRouteChildren {
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
+
 interface AppDashboardRouteRouteChildren {
   AppDashboardAppIdRoute: typeof AppDashboardAppIdRoute
   AppDashboardSettingsRoute: typeof AppDashboardSettingsRoute
@@ -312,12 +363,10 @@ const AppDashboardRouteRouteWithChildren =
 
 interface AppRouteChildren {
   AppDashboardRouteRoute: typeof AppDashboardRouteRouteWithChildren
-  AppAdminIndexRoute: typeof AppAdminIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRouteRoute: AppDashboardRouteRouteWithChildren,
-  AppAdminIndexRoute: AppAdminIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
@@ -340,6 +389,7 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
   AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

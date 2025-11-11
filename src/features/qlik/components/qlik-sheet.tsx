@@ -35,7 +35,7 @@ function QlikSheet({ appId }: QlikTestPageProps) {
                     <qlik-embed ui="analytics/selections" app-id={appId}></qlik-embed>
                 </div>
                 h-[calc(100vh-130px)]*/}
-            <div className="h-[calc(100vh-80px)] flex-[2_0_auto] relative overflow-auto " >
+            <div className="h-[calc(100vh-70px)] flex-[2_0_auto] relative overflow-auto " >
                 <qlik-embed ui="classic/app" app-id={appId}></qlik-embed>
             </div>
         </div >

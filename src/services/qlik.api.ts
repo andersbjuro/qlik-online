@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start"
 import { QlikItem } from "~/features/qlik/types"
-import kyInstance from "src/lib/ky"
 import { SelectionFiltersSchema } from "./qlik.schema"
 import { db } from "~/features/db/lib"
 import { selection } from "~/features/qlik/schema"
@@ -21,7 +20,7 @@ export const getQlikItemsForUser = createServerFn({ method: 'GET' })
     }
 
     const items: QlikItem[] = await getQlikItems(qlikUser);
-    return items //Response.json(items, { status: 200 })
+    return items
   })
 
 export const getSelections = createServerFn({ method: 'GET' })

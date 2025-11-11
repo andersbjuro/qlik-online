@@ -1,21 +1,15 @@
 import { Link } from "@tanstack/react-router";
-import { Folder, Forward, type LucideIcon, Trash2 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-} from "src/components/ui/dropdown-menu";
+import {  type LucideIcon } from "lucide-react";
+
 import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "src/components/ui/sidebar";
 
-export function NavItems({
+export default function NavItems({
   items,
   label,
 }: {
@@ -26,10 +20,9 @@ export function NavItems({
   }[];
   label: string;
 }) {
-  const { isMobile } = useSidebar();
 
   return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+    <SidebarGroup >
       <SidebarGroupLabel>{label}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (

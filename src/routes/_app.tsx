@@ -12,10 +12,8 @@ export const Route = createFileRoute("/_app")({
 
 function RouteComponent() {
   return (
-    <div className="flex flex-col">
-      <main>
-        <Outlet />
-      </main>
+    <div >
+      <Outlet />
     </div>
   )
 }

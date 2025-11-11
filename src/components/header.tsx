@@ -2,7 +2,6 @@ import { Link, useRouter } from "@tanstack/react-router";
 import { GalleryVerticalEndIcon, LogOutIcon } from "lucide-react";
 import { SignedIn } from "src/features/auth/client/components/signed-in";
 import { SignedOut } from "src/features/auth/client/components/signed-out";
-import UserMenu from "src/features/auth/client/components/user-menu";
 import { ButtonLink } from "./button-link";
 import { authClient } from "~/features/auth/lib/auth-client";
 import { useQueryClient } from "@tanstack/react-query"
@@ -19,16 +18,17 @@ export const Header = () => {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-[backdrop-filter]:bg-background/60">
-      <div className="flex h-16 w-full items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-2">
+    <header className="sticky top-0 z-50 w-full ">
+      <div className="flex h-14 w-full items-center justify-between px-3 ">
+        <Link to="/" className="flex items-center gap-2 -mt-2">
           <GalleryVerticalEndIcon className="h-6 w-6 text-primary" />
-          <span className="text-sm font-bold">Forba Systems</span>
+          <span className="text-sm font-bold">FORBA</span>
         </Link>
         <nav className="hidden items-center justify-center md:flex">
           <div className="flex items-center">
             <SignedIn>
               <Button
+                size="sm"
                 onClick={handleLogout}
               >
                 Logga ut
@@ -37,6 +37,7 @@ export const Header = () => {
             <SignedOut>
               <ButtonLink
                 to="/sign-in"
+                size="sm"
                 search={{ redirectTo: router.state.location.href }}
               >
                 Logga in

@@ -2,9 +2,9 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarMenu, SidebarMenuButton,
 import { Link } from '@tanstack/react-router'
 import { GalleryVerticalEndIcon, Shield, Users } from 'lucide-react'
 import SelectionsComponent from './selection-component'
-import { NavUser } from 'src/features/auth/client/components/nav-user'
+import { NavUser } from '~/features/app/nav-user'
 import { authClient } from 'src/features/auth/lib/auth-client'
-import { NavItems } from './nav-items'
+import { NavItems } from '../../app/nav-items'
 
 export default function QlikSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   //const { data: session } = authClient.useSession();
