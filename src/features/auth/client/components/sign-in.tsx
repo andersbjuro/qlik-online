@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useForm } from "@tanstack/react-form"
 import { useEffect } from "react";
-import LoadingButton from "src/components/LoadingButton";
+import LoadingButton from "~/components/loading-button";
 import { Input } from "src/components/ui/input";
 import { authClient } from "src/features/auth/lib/auth-client";
 import { useResendVerificationEmail, useSignIn, useSignInWithPasskey } from "src/features/auth/client/use-cases";
@@ -32,8 +32,12 @@ export default function SignIn() {
           password: value.password,
         },
         {
-          onSuccess: () => {
+          onSuccess: (response) => {
+            toast.success(`Välkommen tillbaka! ${response.user.name}`);
             navigate({ to: "/dashboard" });
+          },
+          onError: (error) => {
+            toast.error(`${error.message}`)
           },
         }
       );

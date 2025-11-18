@@ -12,7 +12,7 @@ export type SelectionData = {
     selectionPidCount: number,
     bookmark: boolean,
     createdAt: string,
-    selectionLines?: number[]
+    selectionLinesAsJson?: number[]
 };
 
 export type QlikApplication = {

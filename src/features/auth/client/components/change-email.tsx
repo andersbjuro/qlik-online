@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import LoadingButton from "src/components/LoadingButton";
+import LoadingButton from "~/components/loading-button";
 import { Input } from "src/components/ui/input";
 import { Label } from "src/components/ui/label";
 import { useChangeEmail } from "../use-cases";

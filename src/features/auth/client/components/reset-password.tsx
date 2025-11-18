@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
-import LoadingButton from "src/components/LoadingButton";
+import LoadingButton from "~/components/loading-button";
 import { Input } from "src/components/ui/input";
 import { Label } from "src/components/ui/label";
 import { useResetPassword } from "src/features/auth/client/use-cases";

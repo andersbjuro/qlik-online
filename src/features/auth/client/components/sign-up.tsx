@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useForm } from "@tanstack/react-form"
 import z from "zod";
-import LoadingButton from "src/components/LoadingButton";
+import LoadingButton from "~/components/loading-button";
 import { Button } from "src/components/ui/button";
 import { Input } from "src/components/ui/input";
 import { useSignUp } from "src/features/auth/client/use-cases";

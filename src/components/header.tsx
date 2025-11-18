@@ -1,5 +1,5 @@
 import { Link, useRouter } from "@tanstack/react-router";
-import { GalleryVerticalEndIcon, LogOutIcon } from "lucide-react";
+import { GalleryVerticalEndIcon } from "lucide-react";
 import { SignedIn } from "src/features/auth/client/components/signed-in";
 import { SignedOut } from "src/features/auth/client/components/signed-out";
 import { ButtonLink } from "./button-link";

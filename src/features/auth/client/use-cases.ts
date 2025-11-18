@@ -17,7 +17,7 @@ export function useSignIn() {
         throw new Error("Make sure to fill in all fields correctly");
       }
 
-      const { error } = await authClient.signIn.email({
+      const { error, data: response } = await authClient.signIn.email({
         email,
         password,
       });
@@ -28,6 +28,8 @@ export function useSignIn() {
         }
         throw new Error("Sign in failed. Please check your credentials and try again.");
       }
+
+      return response;
     },
   });
 }
