@@ -1,5 +1,6 @@
 import { InferSelectModel } from "drizzle-orm";
 import { boolean, integer, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { customer } from "../qlik/schema";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey().notNull(),
@@ -8,12 +9,13 @@ export const user = pgTable("user", {
   emailVerified: boolean("emailVerified").notNull(),
   image: text("image"),
   role: text("role").$default(() => 'user'),
-	issuer: text("issuer"),
-	banned: boolean("banned").$defaultFn(() => false).notNull(),
-	banReason: text("banReason"),
-	banExpires: timestamp("banExpires"),
+  issuer: text("issuer"),
+  banned: boolean("banned").$defaultFn(() => false).notNull(),
+  banReason: text("banReason"),
+  banExpires: timestamp("banExpires"),
   createdAt: timestamp("createdAt").notNull().defaultNow(),
   updatedAt: timestamp("updatedAt").notNull().defaultNow(),
+  customerId: integer("customerId").references(() => customer.id),
 });
 
 export type User = InferSelectModel<typeof user>;

@@ -27,7 +27,6 @@ export const getQlikSelection = createServerFn({ method: 'GET' })
   .inputValidator(SelectionFiltersSchema)
   .middleware([userMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
-    console.log("Getting Qlik Selection for appId:", data.appId);
     if (!userSession) return null
     if (!data.appId) return null
 

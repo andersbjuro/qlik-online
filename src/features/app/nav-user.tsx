@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "src/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "src/components/ui/sidebar";
-import { authClient, useAuthenticatedUser, useAuthentication } from "src/features/auth/lib/auth-client";
+import { authClient, useAuthentication } from "src/features/auth/lib/auth-client";
 import { useQueryClient } from "@tanstack/react-query";
 import { canManageUsers, type UserRole } from 'src/features/auth/lib/permissions';
 

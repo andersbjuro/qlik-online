@@ -4,11 +4,7 @@ import { useState } from "react";
 import { cn } from "src/lib/utils";
 import { Switch } from "src/components/ui/switch"
 import { Label } from "src/components/ui/label";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "src/components/ui/tooltip"
+import { Tooltip, TooltipContent, TooltipTrigger } from "src/components/ui/tooltip"
 import { BoxIcon, Trash2Icon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { selectionQueries } from "~/services/queries";
@@ -16,7 +12,7 @@ import { useParams } from "@tanstack/react-router";
 import { setQlikSelection } from "~/services/qlik.api";
 import { Button } from "~/components/ui/button";
 import { useDeleteSelection } from "../use-cases";
-//import OrderSelectionsDialog from "./order-selections-dialog";
+
 //import { useDeleteSelectionMutation } from "./mutations";
 
 export default function SelectionsComponent() {
@@ -52,28 +48,6 @@ export default function SelectionsComponent() {
               checked={bmark}
               onCheckedChange={setBmark}
             />
-          </div>
-          <div>
-            {/* <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button size="icon" variant="ghost" className="focus-visible:ring-0 focus-visible:ring-offset-0">
-                  <EllipsisVerticalIcon className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel className="text-xs text-muted-foreground">{'Kommandon'}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <div className="">
-                  <DropdownMenuItem asChild>
-                     <AddSelectionDialog />
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <OrderSelectionsDialog />
-                  </DropdownMenuItem>
-                </div>
-
-              </DropdownMenuContent>
-            </DropdownMenu> */}
           </div>
         </div>
 
@@ -147,14 +121,6 @@ export const SelectionItem = ({ item, selectedId, onSelect, onDelete }: Selectio
               </div>
 
               <div className="z-10 opacity-0 transition-all duration-150 group-hover/item:opacity-100 cursor-pointer">
-                {/* <Button
-                  asChild
-                  variant="destructive"
-                  className="h-5 py-0 px-1 right-0"
-                  onClick={() => { onDelete(item.id) }}
-                >
-                  <Trash2Icon className="h-5 w-5" />
-                </Button> */}
                 <DeleteSelectionButton id={item.id} onDelete={onDelete} />
               </div>
             </div>

@@ -11,6 +11,7 @@ import LoadingButton from '~/components/loading-button';
 import { Switch } from '~/components/ui/switch';
 import { useAddSelection } from '../use-cases';
 import { toast } from 'sonner';
+import { SaveIcon } from 'lucide-react';
 
 function AddSelectionDialog() {
   const { appId } = useParams({ strict: false })
@@ -43,11 +44,12 @@ function AddSelectionDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size='sm' className="text-xs w-full justify-start" disabled={!appId}>
+        <Button size='sm' className="text-xs" disabled={!appId}>
+           <SaveIcon className="mr-2 h-4 w-4" />
           Spara urval
         </Button>
       </DialogTrigger>
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Spara urval</DialogTitle>
           <DialogDescription>

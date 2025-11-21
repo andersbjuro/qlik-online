@@ -55,7 +55,7 @@ code {
   --chart-3: var(--base-800);
   --chart-4: var(--base-400);
   --chart-5: var(--base-300);
-  --radius: 0.25rem;
+  --radius: 0.35rem;
   --sidebar: var(--color-white);
   --sidebar-foreground: var(--base-800);
   --sidebar-primary: var(--base-950);
